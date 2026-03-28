@@ -1,42 +1,141 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Residência Moema Pássaros | Andar Exclusivo - Editor Visual</title>
-  <!-- Tailwind CSS via CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rodrigo de Assis | Andar Exclusivo - Moema Pássaros</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Swiper JS -->
+  <!-- Swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
-    
-    body {
-      background-color: #1a1a1a;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
-    .gold-border { border-color: #d4af37; }
-    .gold-text { color: #d4af37; }
-    .gold-bg { background-color: #d4af37; }
-    .gold-bg-translucid { background-color: rgba(212, 175, 55, 0.12); }
-    .hover-gold:hover { background-color: #d4af37; color: #1a1a1a; transition: all 0.3s ease; }
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Montserrat', sans-serif;
+    }
     
-    /* Container de vídeo vertical 9:16 */
-    .video-vertical-container {
+    .serif-font {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .gold-text {
+      color: #d4af37;
+    }
+    
+    .gold-border {
+      border-color: #d4af37;
+    }
+    
+    .gold-bg {
+      background-color: #d4af37;
+    }
+    
+    /* EFEITO LED - Container com glow e opacidade controlada */
+    .hero-video-led {
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
-      background-color: #0a0a0a;
+      border-radius: 2rem;
       overflow: hidden;
-      border-radius: 1.5rem;
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.6);
+      box-shadow: 
+        0 0 20px rgba(212, 175, 55, 0.3),
+        0 0 40px rgba(212, 175, 55, 0.1),
+        0 25px 40px -12px rgba(0,0,0,0.8);
+      transition: box-shadow 0.5s ease;
+      background: #000;
     }
-    .video-vertical-container video,
-    .video-vertical-container img {
+    
+    .hero-video-led:hover {
+      box-shadow: 
+        0 0 30px rgba(212, 175, 55, 0.5),
+        0 0 60px rgba(212, 175, 55, 0.2),
+        0 30px 50px -15px rgba(0,0,0,0.9);
+    }
+    
+    /* Vídeo com opacidade reduzida (efeito led/silk) */
+    .hero-video-led video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.65;
+      transition: opacity 0.4s ease;
+    }
+    
+    .hero-video-led:hover video {
+      opacity: 0.8;
+    }
+    
+    /* Overlay com gradiente led - simula iluminação de neon */
+    .led-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, 
+        rgba(212, 175, 55, 0.1) 0%, 
+        rgba(0, 0, 0, 0.5) 60%,
+        rgba(0, 0, 0, 0.8) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Efeito de brilho pulsante sutil - estilo LED */
+    @keyframes ledPulse {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.05); }
+      50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.15); }
+      100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.05); }
+    }
+    
+    .hero-video-led {
+      animation: ledPulse 3s ease-in-out infinite;
+    }
+    
+    /* Efeito de borda neon sutil */
+    .hero-video-led::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #d4af37, transparent, #d4af37, transparent);
+      border-radius: 2rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    .hero-video-led:hover::before {
+      opacity: 0.3;
+    }
+    
+    /* Container de vídeo padrão para tour */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+    
+    .video-frame video {
       position: absolute;
       top: 0;
       left: 0;
@@ -45,399 +144,444 @@
       object-fit: cover;
     }
     
-    .hero-video-wrapper {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      max-height: 90vh;
-      margin: 0 auto;
-      position: relative;
+    .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      letter-spacing: 1px;
     }
     
-    /* Swiper custom */
-    .swiper-slide { width: 280px; height: auto; }
-    @media (min-width: 640px) { .swiper-slide { width: 320px; } }
-    
-    /* Formulários e inputs */
-    input, select, textarea {
-      background-color: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      transition: all 0.2s;
-      color: #f5f5f5;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #d4af37;
-      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    .pilar-card {
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      transition: all 0.4s ease;
     }
     
-    /* Botão flutuante */
+    .pilar-card:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.2);
+    }
+    
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #d4af37, transparent);
+    }
+    
     .whatsapp-float {
       position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
+      bottom: 2rem;
+      right: 2rem;
       z-index: 50;
-      background-color: #25d366;
-      width: 56px;
-      height: 56px;
+      background: linear-gradient(135deg, #25d366, #128C7E);
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+      transition: all 0.3s;
     }
-    .whatsapp-float:hover { transform: scale(1.05); }
     
-    /* Painel de edição */
-    .editor-panel {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 320px;
-      height: 100vh;
-      background: #0f0f0f;
-      z-index: 100;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      overflow-y: auto;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.5);
-      border-right: 1px solid #d4af37;
+    .whatsapp-float:hover {
+      transform: scale(1.08);
     }
-    .editor-panel.open { transform: translateX(0); }
-    .editor-toggle {
-      position: fixed;
-      left: 20px;
-      top: 20px;
-      z-index: 101;
+    
+    .swiper-slide {
+      width: 280px;
+    }
+    
+    @media (min-width: 640px) {
+      .swiper-slide {
+        width: 320px;
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    input, select {
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.3s;
+      color: #e5e5e5;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: #d4af37;
+      background: rgba(30, 30, 30, 1);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
       background: #d4af37;
-      color: #1a1a1a;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }
+    
+    .badge-gold {
+      background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.1));
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,175,55,0.4);
+    }
+    
+    .comodidade-item {
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
       transition: all 0.2s;
     }
-    .editor-toggle:hover { transform: scale(1.05); }
-    
-    @media (max-width: 768px) {
-      .editor-panel { width: 280px; }
+    .comodidade-item:hover {
+      border-bottom-color: rgba(212, 175, 55, 0.5);
+      padding-left: 8px;
     }
     
-    ::-webkit-scrollbar { width: 4px; height: 4px; }
-    ::-webkit-scrollbar-track { background: #2a2a2a; }
-    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+    /* Efeito led text para headline */
+    .led-text {
+      text-shadow: 
+        0 0 5px rgba(212, 175, 55, 0.5),
+        0 0 10px rgba(212, 175, 55, 0.3),
+        0 0 15px rgba(212, 175, 55, 0.2);
+    }
+    
+    /* Botão com glow */
+    .btn-gold-glow {
+      transition: all 0.3s;
+    }
+    .btn-gold-glow:hover {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+    }
+    
+    /* Indicador de carregamento do vídeo */
+    .video-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      color: #d4af37;
+      font-size: 2rem;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
   </style>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { gold: '#d4af37', darkGray: '#1a1a1a', charcoal: '#2a2a2a' } } }
-    }
-  </script>
 </head>
-<body class="bg-darkGray text-gray-200">
+<body class="bg-[#0a0a0a] text-[#e8e6e3]">
 
-
-  <!-- Botão Flutuante WhatsApp -->
-  <a href="https://wa.me/5511999999999?text=Olá%2C%20tenho%20interesse%20no%20imóvel%20de%20240m%C2%B2%20em%20Moema%20Pássaros!" 
-     target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+  <!-- WhatsApp Flutuante -->
+  <a href="https://wa.me/5511999999999?text=Olá%20Rodrigo,%20vi%20sua%20apresentação%20do%20Andar%20Exclusivo%20em%20Moema%20e%20tenho%20interesse!" 
+     target="_blank" 
+     class="whatsapp-float"
+     aria-label="WhatsApp">
     <i class="fab fa-whatsapp text-white text-3xl"></i>
   </a>
 
-
-  <!-- Botão Editor Toggle -->
-  <div class="editor-toggle" id="editorToggle">
-    <i class="fas fa-palette text-xl"></i>
-  </div>
-
-
-  <!-- Painel de Edição de Imagens -->
-  <div class="editor-panel" id="editorPanel">
-    <div class="p-5">
-      <div class="flex justify-between items-center mb-6 border-b border-gold pb-3">
-        <h3 class="text-gold font-bold text-lg"><i class="fas fa-image mr-2"></i>Editor Visual</h3>
-        <button id="closeEditor" class="text-gray-400 hover:text-gold"><i class="fas fa-times text-xl"></i></button>
-      </div>
-      <p class="text-xs text-gray-400 mb-4">Personalize imagens e vídeos da landing page (URLs externas).</p>
-      
-      <!-- Hero Image/Video -->
-      <div class="mb-6 border-b border-gray-700 pb-4">
-        <label class="block text-gold text-sm font-semibold mb-2"><i class="fas fa-play-circle mr-1"></i>Hero Vídeo URL</label>
-        <input type="text" id="heroVideoUrl" class="w-full rounded-lg p-2 text-sm" placeholder="URL do vídeo MP4">
-        <button id="updateHero" class="mt-2 gold-bg text-darkGray text-sm px-3 py-1 rounded-lg w-full">Atualizar Hero</button>
-      </div>
-      
-      <!-- Tour Virtual - 3 vídeos -->
-      <div class="mb-6 border-b border-gray-700 pb-4">
-        <label class="block text-gold text-sm font-semibold mb-2"><i class="fas fa-video mr-1"></i>Tour Virtual (Vídeos)</label>
-        <div id="tourUrlsContainer">
-          <div class="mb-2"><input type="text" id="tourVideo1" class="w-full rounded-lg p-2 text-sm" placeholder="Vídeo 1 URL"></div>
-          <div class="mb-2"><input type="text" id="tourVideo2" class="w-full rounded-lg p-2 text-sm" placeholder="Vídeo 2 URL"></div>
-          <div class="mb-2"><input type="text" id="tourVideo3" class="w-full rounded-lg p-2 text-sm" placeholder="Vídeo 3 URL"></div>
-        </div>
-        <button id="updateTour" class="mt-2 gold-bg text-darkGray text-sm px-3 py-1 rounded-lg w-full">Atualizar Tour</button>
-      </div>
-      
-      <!-- Seção Destaques (imagens ilustrativas) -->
-      <div class="mb-6 border-b border-gray-700 pb-4">
-        <label class="block text-gold text-sm font-semibold mb-2"><i class="fas fa-building mr-1"></i>Imagens Destaques</label>
-        <div class="mb-2"><input type="text" id="highlightImg1" class="w-full rounded-lg p-2 text-sm" placeholder="Imagem Elevadores URL"></div>
-        <div class="mb-2"><input type="text" id="highlightImg2" class="w-full rounded-lg p-2 text-sm" placeholder="Imagem Vista URL"></div>
-        <button id="updateHighlights" class="mt-2 gold-bg text-darkGray text-sm px-3 py-1 rounded-lg w-full">Atualizar Imagens</button>
-      </div>
-      
-      <p class="text-xs text-center text-gray-500 mt-4">✨ URLs de exemplo disponíveis para testes</p>
-      <div class="text-xs text-gold mt-2 space-y-1">
-        <div>Vídeos demo: https://cdn.pixabay.com/video/2023/11/18/190229-885487124_large.mp4</div>
-        <div>Imagens: https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg</div>
-      </div>
-    </div>
-  </div>
-
-
-  <main class="max-w-7xl mx-auto px-4 md:px-6 pb-12">
+  <main class="max-w-7xl mx-auto px-5 md:px-8">
     
-    <!-- HERO SECTION -->
-    <section class="pt-4 md:pt-8 pb-8">
-      <div id="heroContainer" class="hero-video-wrapper video-vertical-container relative mx-auto overflow-hidden rounded-2xl shadow-2xl">
-        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source src="https://cdn.pixabay.com/video/2023/11/18/190229-885487124_large.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10">
-          <span class="gold-text text-xs tracking-[0.2em] uppercase font-semibold mb-2">Andar Exclusivo • Único no Pavimento</span>
-          <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight max-w-md">
-            Moema Pássaros<br>
-            <span class="gold-text">240m² de Sofisticação</span>
-          </h1>
-          <p class="text-gray-200 text-base md:text-lg mt-3 max-w-sm">
-            Elevadores privativos, vista panorâmica e privacidade absoluta.
+    <!-- HERO SECTION COM VÍDEO EXEMPLO E EFEITO LED -->
+    <section class="min-h-screen flex flex-col justify-center py-12 md:py-16">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <!-- Lado esquerdo: Headline e conteúdo -->
+        <div class="order-2 md:order-1 animate-fade-up space-y-6">
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="divider"></div>
+              <span class="text-xs tracking-[0.2em] uppercase text-gold-text font-light">Oportunidade Rara · Andar Exclusivo</span>
+            </div>
+            <!-- HEADLINE ESPECÍFICA COM EFEITO LED -->
+            <h1 class="serif-font text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] led-text">
+              O Único Andar Exclusivo Disponível em<br>
+              <span class="gold-text font-medium">Moema Pássaros:</span><br>
+              240m², 4 Vagas e<br>
+              <span class="gold-text">Privacidade Absoluta.</span>
+            </h1>
+          </div>
+          
+          <!-- Sub-headline com gancho da oportunidade -->
+          <div class="space-y-4 bg-[#141414]/50 p-6 rounded-2xl border-l-4 border-gold-text backdrop-blur-sm">
+            <p class="text-[#d4d0c4] leading-relaxed">
+              Localizado na cobiçada <span class="gold-text font-medium">Rua Ministro Gabriel de Rezende Passos</span>, 
+              este imóvel de uma figura pública brasileira une o prestígio de um andar inteiro à segurança de acessos 100% privativos.
+            </p>
+            <p class="text-xl font-light">
+              <span class="line-through text-[#6a685e]">R$ 4,5M</span> 
+              <span class="gold-text text-2xl font-semibold ml-2">por R$ 3,9M</span>
+              <span class="block text-sm text-[#b8b6ae] mt-1">— uma oportunidade única abaixo do valor de mercado.</span>
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="#oportunidade" class="gold-bg text-[#0a0a0a] px-8 py-3 rounded-full text-sm font-semibold tracking-wide transition btn-gold-glow shadow-lg">
+              Conheça a oportunidade
+            </a>
+            <a href="#tour" class="border border-gold-text text-gold-text px-8 py-3 rounded-full text-sm font-semibold transition hover:bg-gold-text/10">
+              Tour imersivo
+            </a>
+          </div>
+          
+          <div class="pt-6">
+            <p class="signature text-gold-text text-sm flex items-center gap-2">
+              <i class="fas fa-feather-alt text-xs"></i> Rodrigo de Assis · Curadoria de Imóveis de Caráter
+            </p>
+          </div>
+        </div>
+        
+        <!-- Lado direito: Vídeo vertical COM EFEITO LED e opacidade reduzida - VÍDEO EXEMPLO FUNCIONAL -->
+        <div class="order-1 md:order-2 flex justify-center">
+          <div class="hero-video-led max-w-[320px] md:max-w-[380px] mx-auto">
+            <!-- VÍDEO DE EXEMPLO - Alta qualidade, vertical, com efeito luxuoso -->
+            <video autoplay muted loop playsinline id="heroVideo" poster="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600">
+              <!-- Vídeo vertical de exemplo - apartamento de luxo com visual contemporâneo -->
+              <source src="https://cdn.pixabay.com/video/2023/07/20/173233-847750586_large.mp4" type="video/mp4">
+              <!-- Fallback 2 - caso o primeiro não carregue -->
+              <source src="https://cdn.pixabay.com/video/2024/01/07/196814-900617446_tiny.mp4" type="video/mp4">
+              Seu navegador não suporta vídeo.
+            </video>
+            <!-- Overlay para efeito LED e opacidade controlada -->
+            <div class="led-overlay"></div>
+            <!-- Badge de status com efeito glow -->
+            <div class="absolute bottom-4 left-4 right-4 z-10">
+              <div class="badge-gold rounded-full px-4 py-2 inline-block text-xs backdrop-blur-md">
+                <i class="fas fa-play-circle gold-text mr-1"></i> Apresentação Exclusiva · Tour 4K
+              </div>
+            </div>
+            <!-- Efeito de canto dourado -->
+            <div class="absolute top-4 right-4 z-10">
+              <i class="fas fa-crown gold-text text-sm opacity-70"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OS 3 PILARES DA EXCLUSIVIDADE -->
+    <section class="py-20 border-t border-[#2a2a2a]">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="flex justify-center mb-4">
+          <div class="divider"></div>
+        </div>
+        <h2 class="serif-font text-4xl md:text-5xl font-light mb-4">
+          Os Pilares da<br>
+          <span class="gold-text">Exclusividade</span>
+        </h2>
+        <p class="text-[#b8b6ae] text-lg font-light">
+          O que torna este andar único em todo Moema Pássaros
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="pilar-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-shield-alt text-gold-text text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-light mb-3 gold-text">Privacidade de Elite</h3>
+          <p class="text-[#b8b6ae] text-sm leading-relaxed">
+            Elevadores (Social e Serviço) com acesso direto e exclusivo ao seu hall privativo. Ninguém divide o andar com você.
           </p>
-          <div class="mt-5 flex gap-4">
-            <a href="#contato" class="gold-bg text-darkGray font-semibold px-6 py-3 rounded-full text-sm shadow-lg transition">Agende uma visita</a>
-            <a href="#tour" class="border border-gold text-gold px-6 py-3 rounded-full text-sm font-semibold transition">Tour Virtual</a>
-          </div>
         </div>
-      </div>
-      <div class="text-center mt-3 text-xs text-gray-400 flex justify-center gap-4">
-        <span><i class="fas fa-building gold-text mr-1"></i> Rua Min. Gabriel de Rezende Passos</span>
-        <span><i class="fas fa-elevator gold-text mr-1"></i> Elevador Social + Serviço</span>
-      </div>
-    </section>
-
-
-    <!-- SEÇÃO DESTAQUES com imagens dinâmicas -->
-    <section class="py-12 border-t border-gray-800">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl md:text-4xl font-bold"><span class="gold-text">Exclusividade</span> em Cada Detalhe</h2>
-        <div class="w-20 h-1 gold-bg mx-auto mt-3 mb-4 rounded-full"></div>
-        <p class="text-gray-300 max-w-2xl mx-auto">Um andar inteiro, só seu. Privacidade e requinte em Moema.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-        <!-- Card Elevadores com imagem -->
-        <div class="bg-charcoal/60 backdrop-blur-sm rounded-2xl overflow-hidden border-l-4 border-gold shadow-xl">
-          <div id="elevadoresImgContainer" class="h-48 overflow-hidden">
-            <img id="elevadoresImg" src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="Elevadores Privativos" class="w-full h-full object-cover">
+        
+        <div class="pilar-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-chandelier text-gold-text text-3xl"></i>
           </div>
-          <div class="p-6">
-            <div class="text-gold text-4xl mb-3"><i class="fas fa-people-arrows"></i></div>
-            <h3 class="text-2xl font-bold mb-2">Elevadores Privativos</h3>
-            <p class="text-gray-300">Acesso exclusivo por elevador social e elevador de serviço, garantindo total privacidade e fluidez no dia a dia.</p>
-          </div>
+          <h3 class="text-2xl font-light mb-3 gold-text">Espaço e Sofisticação</h3>
+          <p class="text-[#b8b6ae] text-sm leading-relaxed">
+            Sala panorâmica em andar alto com bar integrado, biblioteca particular e salas de jantar e TV independentes.
+          </p>
         </div>
-        <!-- Card Vista Panorâmica com imagem -->
-        <div class="bg-charcoal/60 backdrop-blur-sm rounded-2xl overflow-hidden border-l-4 border-gold shadow-xl">
-          <div id="vistaImgContainer" class="h-48 overflow-hidden">
-            <img id="vistaImg" src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" alt="Vista Panorâmica" class="w-full h-full object-cover">
+        
+        <div class="pilar-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-parking text-gold-text text-3xl"></i>
           </div>
-          <div class="p-6">
-            <div class="text-gold text-4xl mb-3"><i class="fas fa-mountain-city"></i></div>
-            <h3 class="text-2xl font-bold mb-2">Vista Panorâmica 360°</h3>
-            <p class="text-gray-300">Ampla varanda e janelas do piso ao teto com vista deslumbrante para o horizonte de Moema.</p>
-          </div>
+          <h3 class="text-2xl font-light mb-3 gold-text">Logística Impecável</h3>
+          <p class="text-[#b8b6ae] text-sm leading-relaxed">
+            4 vagas de garagem, duas despensas (uma com adega) e infraestrutura completa de serviço.
+          </p>
         </div>
       </div>
     </section>
 
-
-    <!-- LISTA DE CARACTERÍSTICAS -->
-    <section class="py-12 border-t border-gray-800">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold">Um Projeto de <span class="gold-text">Arte e Conforto</span></h2>
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-bed text-gold text-3xl mb-2"></i><p class="font-semibold">2 Suítes</p></div>
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-book text-gold text-3xl mb-2"></i><p class="font-semibold">Biblioteca</p></div>
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-champagne-glasses text-gold text-3xl mb-2"></i><p class="font-semibold">Bar</p></div>
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-car text-gold text-3xl mb-2"></i><p class="font-semibold">4 Vagas</p></div>
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-wine-bottle text-gold text-3xl mb-2"></i><p class="font-semibold">Adega</p></div>
-        <div class="bg-black/30 p-4 rounded-xl"><i class="fas fa-ruler-combined text-gold text-3xl mb-2"></i><p class="font-semibold">240m²</p></div>
+    <!-- COMODIDADES COMPLETAS -->
+    <section class="py-16 border-t border-[#2a2a2a]">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="Sala panorâmica" class="rounded-2xl shadow-2xl w-full h-[450px] object-cover">
+        </div>
+        <div>
+          <div class="mb-6">
+            <div class="divider mb-4"></div>
+            <h2 class="serif-font text-3xl md:text-4xl font-light">
+              Um andar pensado para<br>
+              <span class="gold-text">quem vive com intensidade</span>
+            </h2>
+          </div>
+          <div class="space-y-3">
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-couch text-gold-text text-lg w-6"></i><span>Living amplo com vista panorâmica e Bar integrado</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-book text-gold-text text-lg w-6"></i><span>Biblioteca/Escritório (ideal para Home Office de alto padrão)</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-bed text-gold-text text-lg w-6"></i><span>Suítes amplas e Lavabo social</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-utensils text-gold-text text-lg w-6"></i><span>Cozinha planejada com 2 Despensas + Adega climatizada</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-tshirt text-gold-text text-lg w-6"></i><span>Área de serviço completa com dormitório e banheiro anexo</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-elevator text-gold-text text-lg w-6"></i><span>Elevadores social e serviço com acesso exclusivo</span></div>
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-car text-gold-text text-lg w-6"></i><span>4 vagas de garagem cobertas</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <!-- OPORTUNIDADE -->
-    <section class="py-12 border-t border-gray-800">
-      <div class="relative bg-gradient-to-r from-black/80 to-charcoal/80 rounded-3xl p-8 md:p-12 text-center shadow-2xl border border-gold/30">
-        <span class="gold-text uppercase text-sm tracking-wider font-bold">Oportunidade Única</span>
-        <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4">R$ 3.9 Milhões</h2>
-        <p class="text-gray-300 text-lg max-w-lg mx-auto">Valor posicionado <span class="line-through text-gray-400">R$ 4.5M</span> <strong class="gold-text"> abaixo do mercado</strong>.</p>
-        <div class="mt-8"><a href="#contato" class="gold-bg text-darkGray px-8 py-3 rounded-full font-bold inline-flex gap-2">Quero aproveitar <i class="fas fa-arrow-right"></i></a></div>
+    <!-- OPORTUNIDADE - Citação do Gemini -->
+    <section id="oportunidade" class="py-20 border-t border-[#2a2a2a]">
+      <div class="relative bg-gradient-to-br from-[#0f0f0f] to-[#141414] rounded-3xl p-10 md:p-16 shadow-2xl border border-gold-text/20">
+        <div class="max-w-3xl mx-auto text-center">
+          <i class="fas fa-quote-right gold-text text-4xl opacity-50 mb-4"></i>
+          <p class="text-[#d4d0c4] text-lg md:text-xl leading-relaxed italic">
+            "Com essas informações, o cenário mudou de 'um bom apartamento' para um ativo de luxo clássico e extremamente privativo. 
+            O fato de ter dois elevadores com acesso exclusivo (social e serviço) reforça o argumento de segurança e total isolamento, 
+            algo raríssimo até em prédios novos."
+          </p>
+          <div class="divider mx-auto my-6"></div>
+          <p class="gold-text font-medium">— O Gemini</p>
+          <div class="mt-10">
+            <div class="inline-block bg-black/40 rounded-full px-6 py-3 border border-gold-text/30">
+              <span class="text-2xl md:text-3xl font-bold gold-text">R$ 3.9M</span>
+              <span class="text-[#6a685e] line-through ml-3">R$ 4.5M</span>
+              <span class="block text-xs text-[#8a887e] mt-1">Valor posicionado abaixo do mercado</span>
+            </div>
+          </div>
+          <div class="mt-10">
+            <a href="#contato" class="inline-flex items-center gap-2 gold-bg text-[#0a0a0a] px-8 py-4 rounded-full font-semibold transition btn-gold-glow">
+              <span>Agendar conversa exclusiva</span>
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <!-- TOUR VIRTUAL com 3 vídeos -->
-    <section id="tour" class="py-12 border-t border-gray-800">
-      <div class="flex justify-between items-baseline flex-wrap mb-6">
-        <div><h2 class="text-3xl font-bold"><span class="gold-text">Tour Virtual</span> Imersivo</h2><p class="text-gray-400 text-sm">Deslize para explorar os ambientes</p></div>
+    <!-- TOUR VIRTUAL -->
+    <section id="tour" class="py-16 border-t border-[#2a2a2a]">
+      <div class="text-center mb-12">
+        <p class="gold-text text-sm tracking-wider mb-2">experiência imersiva</p>
+        <h2 class="serif-font text-4xl md:text-5xl font-light">Tour Virtual</h2>
+        <p class="text-[#b8b6ae] mt-2">Deslize e conheça cada ambiente</p>
       </div>
+      
       <div class="swiper tourSwiper">
-        <div class="swiper-wrapper" id="tourSlidesWrapper">
-          <!-- Slides serão gerados dinamicamente -->
+        <div class="swiper-wrapper pb-12">
+          <div class="swiper-slide">
+            <div class="video-frame rounded-2xl">
+              <video autoplay muted loop playsinline><source src="https://cdn.pixabay.com/video/2024/01/07/196814-900617446_tiny.mp4" type="video/mp4"></video>
+            </div>
+            <div class="mt-4 text-center"><p class="gold-text font-medium">Living Panorâmico</p><p class="text-xs text-[#8a887e]">Bar integrado · Vista livre</p></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="video-frame rounded-2xl">
+              <video autoplay muted loop playsinline><source src="https://cdn.pixabay.com/video/2022/05/03/115180-707109328_tiny.mp4" type="video/mp4"></video>
+            </div>
+            <div class="mt-4 text-center"><p class="gold-text font-medium">Suíte Principal</p><p class="text-xs text-[#8a887e]">Closet · Banho de mármore</p></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="video-frame rounded-2xl">
+              <video autoplay muted loop playsinline><source src="https://cdn.pixabay.com/video/2023/06/30/169647-839047956_tiny.mp4" type="video/mp4"></video>
+            </div>
+            <div class="mt-4 text-center"><p class="gold-text font-medium">Biblioteca & Adega</p><p class="text-xs text-[#8a887e]">Espaço para refúgio e celebração</p></div>
+          </div>
         </div>
-        <div class="swiper-pagination !relative mt-4"></div>
+        <div class="swiper-pagination !relative mt-2"></div>
       </div>
     </section>
 
-
-    <!-- FORMULÁRIO -->
-    <section id="contato" class="py-12 border-t border-gray-800">
-      <div class="max-w-xl mx-auto bg-charcoal/40 rounded-3xl p-6 md:p-10 shadow-2xl">
-        <div class="text-center mb-6">
-          <i class="fas fa-pen-nib gold-text text-3xl"></i>
-          <h2 class="text-2xl md:text-3xl font-bold mt-2">Solicite uma <span class="gold-text">Visita Exclusiva</span></h2>
+    <!-- FORMULÁRIO DE CONTATO -->
+    <section id="contato" class="py-16 border-t border-[#2a2a2a] mb-12">
+      <div class="max-w-xl mx-auto">
+        <div class="text-center mb-8">
+          <i class="fas fa-key gold-text text-3xl"></i>
+          <h2 class="serif-font text-3xl md:text-4xl font-light mt-3">Fale com Rodrigo de Assis</h2>
+          <p class="text-[#b8b6ae] text-sm">Uma conversa reservada sobre este endereço exclusivo</p>
         </div>
-        <form id="leadForm" class="space-y-5">
-          <div><label class="block text-sm font-medium text-gold mb-1">Nome Completo</label><input type="text" id="nome" required class="w-full rounded-xl py-3 px-4 bg-gray-900/70 border-gray-700" placeholder="Seu nome"></div>
-          <div><label class="block text-sm font-medium text-gold mb-1">WhatsApp</label><input type="tel" id="whatsapp" required class="w-full rounded-xl py-3 px-4 bg-gray-900/70" placeholder="(11) 99999-9999"></div>
-          <div><label class="block text-sm font-medium text-gold mb-1">Horário de Preferência</label><select id="horario" class="w-full rounded-xl py-3 px-4 bg-gray-900/70"><option>Manhã (9h-12h)</option><option>Tarde (14h-18h)</option><option>Noite (19h-21h)</option><option>Fim de semana</option></select></div>
-          <button type="submit" class="w-full gold-bg text-darkGray font-bold py-3 rounded-xl text-lg">Agendar Contato Exclusivo</button>
-        </form>
-        <div id="formFeedback" class="mt-4 text-center text-sm hidden"></div>
+        
+        <div class="bg-[#0f0f0f] rounded-2xl p-8 border border-gold-text/10">
+          <form id="leadForm" class="space-y-5">
+            <div><label class="block text-gold-text text-sm mb-1">Nome completo</label><input type="text" id="nome" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]" placeholder="Como devo te chamar?"></div>
+            <div><label class="block text-gold-text text-sm mb-1">WhatsApp (com DDD)</label><input type="tel" id="whatsapp" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]" placeholder="(11) 9xxxx-xxxx"></div>
+            <div><label class="block text-gold-text text-sm mb-1">Melhor horário para contato</label><select id="horario" class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]"><option>Manhã (9h às 12h)</option><option>Tarde (14h às 18h)</option><option>Noite (19h às 21h)</option><option>Fim de semana</option></select></div>
+            <button type="submit" class="w-full gold-bg text-[#0a0a0a] font-semibold py-3 rounded-xl transition btn-gold-glow flex items-center justify-center gap-2"><i class="fas fa-comment-dots"></i> Solicitar apresentação exclusiva</button>
+          </form>
+          <div id="formFeedback" class="mt-5 text-center text-sm hidden"></div>
+          <p class="text-center text-xs text-[#6a685e] mt-6"><i class="fas fa-lock-alt mr-1"></i> Retorno em até 2h · Atendimento pessoal e sigiloso</p>
+        </div>
       </div>
     </section>
 
-
-    <footer class="text-center text-gray-500 text-xs py-8 border-t border-gray-800">
-      <p>Rua Ministro Gabriel de Rezende Passos, Moema - Pássaros, SP | 240m² de exclusividade</p>
+    <footer class="py-10 border-t border-[#2a2a2a] text-center">
+      <div class="flex justify-center gap-6 mb-6"><a href="#" class="text-[#8a887e] hover:text-gold-text"><i class="fab fa-instagram text-xl"></i></a><a href="#" class="text-[#8a887e] hover:text-gold-text"><i class="fab fa-linkedin-in text-xl"></i></a></div>
+      <p class="signature text-gold-text text-sm">Rodrigo de Assis · Curadoria de Imóveis de Caráter</p>
+      <p class="text-[#5a584e] text-xs mt-3">Rua Ministro Gabriel de Rezende Passos, Moema Pássaros — SP</p>
+      <p class="text-[#5a584e] text-xs mt-2">Andar Exclusivo · 240m² · 4 Vagas · Elevadores Privativos</p>
     </footer>
   </main>
 
-
   <script>
-    // Dados iniciais dos vídeos do tour
-    let tourVideos = [
-      "https://cdn.pixabay.com/video/2024/01/07/196814-900617446_tiny.mp4",
-      "https://cdn.pixabay.com/video/2022/05/03/115180-707109328_tiny.mp4",
-      "https://cdn.pixabay.com/video/2023/06/30/169647-839047956_tiny.mp4"
-    ];
-    
-    // Função para renderizar slides do tour
-    function renderTourSlides(videos) {
-      const wrapper = document.getElementById('tourSlidesWrapper');
-      wrapper.innerHTML = '';
-      videos.forEach((src, idx) => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML = `
-          <div class="video-vertical-container rounded-2xl overflow-hidden shadow-xl">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-              <source src="${src}" type="video/mp4">
-            </video>
-          </div>
-          <p class="text-center mt-3 font-medium gold-text">Ambiente ${idx+1}</p>
-          <p class="text-xs text-center text-gray-400">Tour Exclusivo</p>
-        `;
-        wrapper.appendChild(slide);
-      });
-      // Re-inicializar swiper
-      if (window.tourSwiperInstance) window.tourSwiperInstance.destroy(true, true);
-      window.tourSwiperInstance = new Swiper('.tourSwiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-        freeMode: true,
-        pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
-        grabCursor: true,
-      });
-    }
-    
-    // Inicializar tour
-    renderTourSlides(tourVideos);
-    
-    // Editor de imagens e vídeos
-    // Hero Video
-    document.getElementById('updateHero').addEventListener('click', () => {
-      const newUrl = document.getElementById('heroVideoUrl').value;
-      if (newUrl) {
-        const heroVideo = document.getElementById('heroVideo');
-        heroVideo.innerHTML = `<source src="${newUrl}" type="video/mp4">`;
-        heroVideo.load();
-        heroVideo.play();
-      }
-    });
-    
-    // Atualizar Tour Vídeos
-    document.getElementById('updateTour').addEventListener('click', () => {
-      const v1 = document.getElementById('tourVideo1').value;
-      const v2 = document.getElementById('tourVideo2').value;
-      const v3 = document.getElementById('tourVideo3').value;
-      const newVideos = [];
-      if (v1) newVideos.push(v1);
-      if (v2) newVideos.push(v2);
-      if (v3) newVideos.push(v3);
-      if (newVideos.length === 3) {
-        renderTourSlides(newVideos);
-      } else if (newVideos.length > 0) {
-        alert('Por favor, preencha os 3 campos para atualizar o tour completo.');
-      }
-    });
-    
-    // Atualizar Imagens Destaques
-    document.getElementById('updateHighlights').addEventListener('click', () => {
-      const img1 = document.getElementById('highlightImg1').value;
-      const img2 = document.getElementById('highlightImg2').value;
-      if (img1) document.getElementById('elevadoresImg').src = img1;
-      if (img2) document.getElementById('vistaImg').src = img2;
-    });
-    
-    // Painel Editor
-    const editorPanel = document.getElementById('editorPanel');
-    const editorToggle = document.getElementById('editorToggle');
-    const closeEditor = document.getElementById('closeEditor');
-    
-    editorToggle.addEventListener('click', () => {
-      editorPanel.classList.toggle('open');
-    });
-    closeEditor.addEventListener('click', () => {
-      editorPanel.classList.remove('open');
-    });
-    
-    // Fechar ao clicar fora (opcional)
-    document.addEventListener('click', (e) => {
-      if (!editorPanel.contains(e.target) && !editorToggle.contains(e.target) && editorPanel.classList.contains('open')) {
-        editorPanel.classList.remove('open');
-      }
+    // Swiper Tour
+    const tourSwiper = new Swiper('.tourSwiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      freeMode: true,
+      pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
+      grabCursor: true,
     });
     
     // Formulário
     const form = document.getElementById('leadForm');
-    const feedbackDiv = document.getElementById('formFeedback');
+    const feedback = document.getElementById('formFeedback');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const nome = document.getElementById('nome').value.trim();
       const whatsapp = document.getElementById('whatsapp').value.trim();
       const horario = document.getElementById('horario').value;
       if (!nome || !whatsapp) {
-        feedbackDiv.innerHTML = '<span class="text-red-400">Preencha nome e WhatsApp.</span>';
-        feedbackDiv.classList.remove('hidden');
+        feedback.innerHTML = '<span class="text-amber-400 text-sm">✧ Por favor, informe nome e telefone para atendimento exclusivo.</span>';
+        feedback.classList.remove('hidden');
         return;
       }
-      feedbackDiv.innerHTML = `<span class="text-green-400">✓ Obrigado ${nome}! Em breve contato via ${whatsapp} (${horario}).</span>`;
-      feedbackDiv.classList.remove('hidden');
+      feedback.innerHTML = `<span class="text-gold-text text-sm">✓ Obrigado, ${nome}! Em breve entrarei em contato via WhatsApp (${horario}) para conversarmos sobre este andar exclusivo em Moema.</span>`;
+      feedback.classList.remove('hidden');
       form.reset();
-      setTimeout(() => feedbackDiv.classList.add('hidden'), 6000);
+      setTimeout(() => feedback.classList.add('hidden'), 8000);
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "") return;
+        const target = document.querySelector(href);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+    
+    // Adicionar efeito de carregamento elegante para o vídeo
+    const heroVideo = document.getElementById('heroVideo');
+    heroVideo.addEventListener('loadeddata', () => {
+      console.log('Vídeo carregado com sucesso - efeito LED ativo');
     });
   </script>
 </body>
