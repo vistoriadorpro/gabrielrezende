@@ -41,88 +41,36 @@
       background-color: #d4af37;
     }
     
-    /* EFEITO LED - Container com glow e opacidade controlada */
-    .hero-video-led {
+    /* Container de vídeo SEM EFEITO LED */
+    .hero-video-container {
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
       border-radius: 2rem;
       overflow: hidden;
-      box-shadow: 
-        0 0 20px rgba(212, 175, 55, 0.3),
-        0 0 40px rgba(212, 175, 55, 0.1),
-        0 25px 40px -12px rgba(0,0,0,0.8);
-      transition: box-shadow 0.5s ease;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.6);
       background: #000;
     }
     
-    .hero-video-led:hover {
-      box-shadow: 
-        0 0 30px rgba(212, 175, 55, 0.5),
-        0 0 60px rgba(212, 175, 55, 0.2),
-        0 30px 50px -15px rgba(0,0,0,0.9);
-    }
-    
-    /* Vídeo com opacidade reduzida (efeito led/silk) */
-    .hero-video-led video {
+    .hero-video-container video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.65;
-      transition: opacity 0.4s ease;
     }
     
-    .hero-video-led:hover video {
-      opacity: 0.8;
-    }
-    
-    /* Overlay com gradiente led - simula iluminação de neon */
-    .led-overlay {
+    /* Overlay simples sem efeito LED */
+    .simple-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, 
-        rgba(212, 175, 55, 0.1) 0%, 
-        rgba(0, 0, 0, 0.5) 60%,
-        rgba(0, 0, 0, 0.8) 100%);
+      background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
       pointer-events: none;
       z-index: 1;
-    }
-    
-    /* Efeito de brilho pulsante sutil - estilo LED */
-    @keyframes ledPulse {
-      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.05); }
-      50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.15); }
-      100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.05); }
-    }
-    
-    .hero-video-led {
-      animation: ledPulse 3s ease-in-out infinite;
-    }
-    
-    /* Efeito de borda neon sutil */
-    .hero-video-led::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #d4af37, transparent, #d4af37, transparent);
-      border-radius: 2rem;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-      z-index: 2;
-    }
-    
-    .hero-video-led:hover::before {
-      opacity: 0.3;
     }
     
     /* Container de vídeo padrão para tour */
@@ -186,6 +134,7 @@
       width: 60px;
       height: 2px;
       background: linear-gradient(90deg, #d4af37, transparent);
+      margin: 0 auto;
     }
     
     .whatsapp-float {
@@ -268,14 +217,6 @@
       padding-left: 8px;
     }
     
-    /* Efeito led text para headline */
-    .led-text {
-      text-shadow: 
-        0 0 5px rgba(212, 175, 55, 0.5),
-        0 0 10px rgba(212, 175, 55, 0.3),
-        0 0 15px rgba(212, 175, 55, 0.2);
-    }
-    
     /* Botão com glow */
     .btn-gold-glow {
       transition: all 0.3s;
@@ -295,19 +236,6 @@
       box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
     }
     
-    /* Efeito hover para ícones sociais */
-    .social-icon {
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .social-icon:hover {
-      transform: translateY(-3px);
-      color: #d4af37 !important;
-    }
-    
     /* Ícone circular para os pilares */
     .icon-circle {
       width: 70px;
@@ -325,6 +253,17 @@
       transform: scale(1.05);
       background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.1));
     }
+    
+    /* Centralização de texto */
+    .text-center-custom {
+      text-align: center;
+    }
+    
+    .flex-center {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-[#e8e6e3]">
@@ -339,18 +278,17 @@
 
   <main class="max-w-7xl mx-auto px-5 md:px-8">
     
-    <!-- HERO SECTION COM VÍDEO EXEMPLO E EFEITO LED -->
+    <!-- HERO SECTION COM VÍDEO SEM EFEITO LED -->
     <section class="min-h-screen flex flex-col justify-center py-12 md:py-16">
       <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-        <!-- Lado esquerdo: Headline e conteúdo -->
-        <div class="order-2 md:order-1 animate-fade-up space-y-6">
+        <!-- Lado esquerdo: Headline e conteúdo centralizado -->
+        <div class="order-2 md:order-1 animate-fade-up space-y-6 text-center">
           <div class="space-y-2">
-            <div class="flex items-center gap-3">
+            <div class="flex justify-center">
               <div class="divider"></div>
-              <span class="text-xs tracking-[0.2em] uppercase text-gold-text font-light">Oportunidade Rara · Andar Exclusivo</span>
             </div>
-            <!-- HEADLINE ESPECÍFICA COM EFEITO LED -->
-            <h1 class="serif-font text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] led-text">
+            <span class="text-xs tracking-[0.2em] uppercase text-gold-text font-light block">Oportunidade Rara · Andar Exclusivo</span>
+            <h1 class="serif-font text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15]">
               O Único Andar Exclusivo Disponível em<br>
               <span class="gold-text font-medium">Moema Pássaros:</span><br>
               240m², 4 Vagas e<br>
@@ -358,8 +296,8 @@
             </h1>
           </div>
           
-          <!-- Sub-headline com gancho da oportunidade -->
-          <div class="space-y-4 bg-[#141414]/50 p-6 rounded-2xl border-l-4 border-gold-text backdrop-blur-sm">
+          <!-- Sub-headline centralizado -->
+          <div class="space-y-4 bg-[#141414]/50 p-6 rounded-2xl border-l-4 border-gold-text backdrop-blur-sm text-center">
             <p class="text-[#d4d0c4] leading-relaxed">
               Localizado na cobiçada <span class="gold-text font-medium">Rua Ministro Gabriel de Rezende Passos</span>, 
               este imóvel de uma figura pública brasileira une o prestígio de um andar inteiro à segurança de acessos 100% privativos.
@@ -371,7 +309,8 @@
             </p>
           </div>
           
-          <div class="flex flex-wrap gap-4 pt-4">
+          <!-- Botões centralizados -->
+          <div class="flex-center pt-4">
             <a href="#oportunidade" class="gold-bg text-[#0a0a0a] px-8 py-3 rounded-full text-sm font-semibold tracking-wide transition btn-gold-glow shadow-lg">
               Conheça essa oportunidade
             </a>
@@ -381,24 +320,24 @@
           </div>
           
           <div class="pt-6">
-            <p class="signature text-gold-text text-sm flex items-center gap-2">
+            <p class="signature text-gold-text text-sm flex items-center justify-center gap-2">
               <i class="fas fa-feather-alt text-xs"></i> Rodrigo de Assis · Curadoria de Imóveis Alto Padrão · CRECI 00000 J
             </p>
           </div>
         </div>
         
-        <!-- Lado direito: Vídeo vertical COM EFEITO LED e opacidade reduzida - VÍDEO EXEMPLO FUNCIONAL -->
+        <!-- Lado direito: Vídeo SEM EFEITO LED -->
         <div class="order-1 md:order-2 flex justify-center">
-          <div class="hero-video-led max-w-[320px] md:max-w-[380px] mx-auto">
-            <video autoplay muted loop playsinline id="heroVideo" poster="images/video_completo_final.mp4">
+          <div class="hero-video-container max-w-[320px] md:max-w-[380px] mx-auto">
+            <video autoplay muted loop playsinline id="heroVideo">
               <source src="images/video_completo_final.mp4" type="video/mp4">
               <source src="images/video_completo_final.mp4" type="video/mp4">
               Seu navegador não suporta vídeo.
             </video>
-            <div class="led-overlay"></div>
+            <div class="simple-overlay"></div>
             <div class="absolute bottom-4 left-4 right-4 z-10">
               <div class="badge-gold rounded-full px-4 py-2 inline-block text-xs backdrop-blur-md">
-                <i class="fas fa-play-circle gold-text mr-1"></i> Apresentação Exclusiva · Tour 4K
+                <i class="fas fa-tag gold-text mr-1"></i> R$ 600 MIL abaixo do valor
               </div>
             </div>
             <div class="absolute top-4 right-4 z-10">
@@ -409,7 +348,7 @@
       </div>
     </section>
 
-    <!-- OS 3 PILARES DA EXCLUSIVIDADE - COM ÍCONES CORRIGIDOS -->
+    <!-- OS 3 PILARES DA EXCLUSIVIDADE -->
     <section class="py-20 border-t border-[#2a2a2a]">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="flex justify-center mb-4">
@@ -476,17 +415,18 @@
             <div class="divider mb-4"></div>
             <h2 class="serif-font text-3xl md:text-4xl font-light">
               Um patrimônio pensado para<br>
-              <span class="gold-text">quem vive com intensidade</span>
+              <span class="gold-text">quem opta por comodidade</span>
             </h2>
           </div>
           <div class="space-y-3">
+            <!-- 4 vagas de garagem cobertas como primeiro item -->
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-car text-gold-text text-lg w-6"></i><span>4 vagas de garagem cobertas</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-couch text-gold-text text-lg w-6"></i><span>Living amplo com vista panorâmica e Bar integrado</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-book text-gold-text text-lg w-6"></i><span>Biblioteca/Escritório (ideal para Home Office de alto padrão)</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-bed text-gold-text text-lg w-6"></i><span>Suítes amplas e Lavabo social</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-utensils text-gold-text text-lg w-6"></i><span>Cozinha planejada com 2 Despensas + Adega climatizada</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-tshirt text-gold-text text-lg w-6"></i><span>Área de serviço completa com dormitório e banheiro anexo</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-elevator text-gold-text text-lg w-6"></i><span>Elevadores social e serviço com acesso exclusivo</span></div>
-            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-car text-gold-text text-lg w-6"></i><span>4 vagas de garagem cobertas</span></div>
           </div>
         </div>
       </div>
@@ -582,7 +522,7 @@
               </select>
             </div>
             <button type="submit" class="w-full btn-whatsapp-form text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
-              <i class="fab fa-whatsapp text-xl"></i> Falar com Rodrigo no WhatsApp
+              <i class="fab fa-whatsapp text-xl"></i> Falar com o Rodrigo agora
             </button>
           </form>
           <p class="text-center text-xs text-[#6a685e] mt-6">
@@ -595,7 +535,7 @@
       </div>
     </section>
 
-    <!-- FOOTER COM LINKS DO INSTAGRAM E LINKEDIN -->
+    <!-- FOOTER -->
     <footer class="py-10 border-t border-[#2a2a2a] text-center">
       <div class="flex justify-center gap-8 mb-6">
         <a href="https://www.instagram.com/odetentor_rodrigoassis/" target="_blank" class="text-[#8a887e] hover:text-gold-text transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-2">
@@ -607,7 +547,7 @@
           <span class="text-sm hidden sm:inline">linkedin.com/in/rodrigodeap</span>
         </a>
       </div>
-      <p class="signature text-gold-text text-sm">Rodrigo de Assis · Curadoria de Imóveis de Caráter</p>
+      <p class="signature text-gold-text text-sm">Rodrigo de Assis · Curadoria de Imóveis Alto Padrão</p>
       <p class="text-[#5a584e] text-xs mt-3">Rua Ministro Gabriel de Rezende Passos, Moema Pássaros — SP</p>
       <p class="text-[#5a584e] text-xs mt-2">Andar Exclusivo · 240m² · 4 Vagas · Elevadores Privativos</p>
     </footer>
@@ -659,7 +599,7 @@
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
       heroVideo.addEventListener('loadeddata', () => {
-        console.log('Vídeo carregado com sucesso - efeito LED ativo');
+        console.log('Vídeo carregado com sucesso');
       });
     }
   </script>
