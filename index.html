@@ -264,6 +264,43 @@
       justify-content: center;
       gap: 1rem;
     }
+    
+    /* Estilo para o aviso legal no vídeo */
+    .legal-notice {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 9px;
+      color: rgba(255,255,255,0.6);
+      background: rgba(0,0,0,0.5);
+      padding: 4px 8px;
+      z-index: 15;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.3px;
+    }
+    
+    /* Seção de termos legais no footer */
+    .legal-terms {
+      font-size: 10px;
+      line-height: 1.5;
+      color: #6a685e;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+    
+    .legal-terms a {
+      color: #d4af37;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    
+    .legal-terms a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-[#e8e6e3]">
@@ -321,12 +358,12 @@
           
           <div class="pt-6">
             <p class="signature text-gold-text text-sm flex items-center justify-center gap-2">
-              <i class="fas fa-feather-alt text-xs"></i> Rodrigo de Assis · Curadoria de Imóveis Alto Padrão · CRECI-J 22.171 · Espaço Chaves Imóveis Ltda 
+              <i class="fas fa-feather-alt text-xs"></i> Rodrigo de Assis · Curadoria de Imóveis Alto Padrão · CRECI-J 22171
             </p>
           </div>
         </div>
         
-        <!-- Lado direito: Vídeo SEM EFEITO LED -->
+        <!-- Lado direito: Vídeo SEM EFEITO LED COM AVISO LEGAL -->
         <div class="order-1 md:order-2 flex justify-center">
           <div class="hero-video-container max-w-[320px] md:max-w-[380px] mx-auto">
             <video autoplay muted loop playsinline id="heroVideo">
@@ -342,6 +379,10 @@
             </div>
             <div class="absolute top-4 right-4 z-10">
               <i class="fas fa-crown gold-text text-sm opacity-70"></i>
+            </div>
+            <!-- AVISO LEGAL NO VÍDEO -->
+            <div class="legal-notice">
+              <i class="fas fa-info-circle mr-1"></i> Imagens meramente ilustrativas
             </div>
           </div>
         </div>
@@ -364,7 +405,6 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Pilar 1: Privacidade de Elite -->
         <div class="pilar-card rounded-2xl p-8 text-center">
           <div class="icon-circle">
             <i class="fas fa-shield-alt text-gold-text text-3xl"></i>
@@ -375,7 +415,6 @@
           </p>
         </div>
         
-        <!-- Pilar 2: Espaço e Sofisticação - ÍCONE DE CASA -->
         <div class="pilar-card rounded-2xl p-8 text-center">
           <div class="icon-circle">
             <i class="fas fa-home text-gold-text text-3xl"></i>
@@ -386,7 +425,6 @@
           </p>
         </div>
         
-        <!-- Pilar 3: Logística Impecável -->
         <div class="pilar-card rounded-2xl p-8 text-center">
           <div class="icon-circle">
             <i class="fas fa-parking text-gold-text text-3xl"></i>
@@ -399,7 +437,7 @@
       </div>
     </section>
 
-    <!-- COMODIDADES COMPLETAS - COM NOVA INFORMAÇÃO DE LOCALIZAÇÃO -->
+    <!-- COMODIDADES COMPLETAS -->
     <section class="py-16 border-t border-[#2a2a2a]">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -408,6 +446,10 @@
               <source src="images/garagem.mp4" type="video/mp4">
               Seu navegador não suporta vídeo.
             </video>
+            <!-- Aviso legal no vídeo da garagem -->
+            <div class="legal-notice" style="bottom: 8px; font-size: 8px;">
+              <i class="fas fa-info-circle mr-1"></i> Imagem ilustrativa
+            </div>
           </div>
         </div>
         <div>
@@ -419,12 +461,8 @@
             </h2>
           </div>
           <div class="space-y-3">
-            <!-- 4 vagas de garagem cobertas como primeiro item -->
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-car text-gold-text text-lg w-6"></i><span>4 vagas de garagem cobertas</span></div>
-            
-            <!-- NOVO ITEM: Localização no lado mais nobre de Moema -->
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-map-marker-alt text-gold-text text-lg w-6"></i><span>Localização no lado mais nobre de Moema: ao lado do Pq. Ibirapuera</span></div>
-            
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-couch text-gold-text text-lg w-6"></i><span>Living amplo com vista panorâmica e Bar integrado</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-book text-gold-text text-lg w-6"></i><span>Biblioteca/Escritório (ideal para Home Office de alto padrão)</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-bed text-gold-text text-lg w-6"></i><span>Suítes amplas e Lavabo social</span></div>
@@ -471,6 +509,7 @@
         <p class="gold-text text-sm tracking-wider mb-2">experiência imersiva</p>
         <h2 class="serif-font text-4xl md:text-5xl font-light">Tour Virtual</h2>
         <p class="text-[#b8b6ae] mt-2">Deslize e conheça cada ambiente</p>
+        <p class="text-xs text-[#6a685e] mt-1">* Imagens ilustrativas dos ambientes</p>
       </div>
       
       <div class="swiper tourSwiper">
@@ -478,18 +517,27 @@
           <div class="swiper-slide">
             <div class="video-frame rounded-2xl">
               <video autoplay muted loop playsinline><source src="images/sala.mp4" type="video/mp4"></video>
+              <div class="legal-notice" style="bottom: 8px; font-size: 8px; background: rgba(0,0,0,0.6);">
+                <i class="fas fa-info-circle mr-1"></i> Imagem ilustrativa
+              </div>
             </div>
             <div class="mt-4 text-center"><p class="gold-text font-medium">Living Panorâmico</p><p class="text-xs text-[#8a887e]">Bar integrado · Vista livre</p></div>
           </div>
           <div class="swiper-slide">
             <div class="video-frame rounded-2xl">
               <video autoplay muted loop playsinline><source src="images/suite.mp4" type="video/mp4"></video>
+              <div class="legal-notice" style="bottom: 8px; font-size: 8px; background: rgba(0,0,0,0.6);">
+                <i class="fas fa-info-circle mr-1"></i> Imagem ilustrativa
+              </div>
             </div>
             <div class="mt-4 text-center"><p class="gold-text font-medium">Suíte Principal</p><p class="text-xs text-[#8a887e]">Closet · Banho de mármore</p></div>
           </div>
           <div class="swiper-slide">
             <div class="video-frame rounded-2xl">
               <video autoplay muted loop playsinline><source src="images/adega.mp4" type="video/mp4"></video>
+              <div class="legal-notice" style="bottom: 8px; font-size: 8px; background: rgba(0,0,0,0.6);">
+                <i class="fas fa-info-circle mr-1"></i> Imagem ilustrativa
+              </div>
             </div>
             <div class="mt-4 text-center"><p class="gold-text font-medium">Biblioteca</p><p class="text-xs text-[#8a887e]">Espaço para refúgio e leitura</p></div>
           </div>
@@ -533,13 +581,13 @@
             <i class="fas fa-lock-alt mr-1"></i> Você será redirecionado para o WhatsApp · Atendimento personalizado
           </p>
           <p class="text-center text-xs text-gold-text/50 mt-2">
-            CRECI-J 22.171 Espaço Chaves Imóveis Ltda 
+            CRECI-J 22171 Espaço Chaves Imóveis Ltda
           </p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER COM TERMOS LEGAIS COMPLETOS -->
     <footer class="py-10 border-t border-[#2a2a2a] text-center">
       <div class="flex justify-center gap-8 mb-6">
         <a href="https://www.instagram.com/odetentor_rodrigoassis/" target="_blank" class="text-[#8a887e] hover:text-gold-text transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-2">
@@ -554,6 +602,22 @@
       <p class="signature text-gold-text text-sm">Rodrigo de Assis · Curadoria de Imóveis Alto Padrão</p>
       <p class="text-[#5a584e] text-xs mt-3">Rua Ministro Gabriel de Rezende Passos, Moema Pássaros — SP</p>
       <p class="text-[#5a584e] text-xs mt-2">Andar Exclusivo · 240m² · 4 Vagas · Elevadores Privativos</p>
+      
+      <!-- TERMOS LEGAIS COMPLETOS -->
+      <div class="legal-terms max-w-3xl mx-auto">
+        <p>
+          <i class="fas fa-camera-retro mr-1"></i> <strong>IMAGENS ILUSTRATIVAS:</strong> As imagens, vídeos e representações gráficas presentes neste site são meramente ilustrativas e podem não corresponder exatamente ao imóvel, servindo apenas para demonstrar o padrão de acabamento, estilo arquitetônico e proposta de design. Recomendamos uma visita presencial para conhecer todas as especificidades do imóvel.
+        </p>
+        <p class="mt-2">
+          <i class="fas fa-balance-scale mr-1"></i> <strong>INFORMAÇÕES LEGAIS:</strong> Os valores, medidas, áreas e demais informações são de responsabilidade do proprietário e/ou incorporadora. Consulte o corretor para obter dados atualizados e precisos. CRECI-J 22171 Espaço Chaves Imóveis Ltda. Todas as negociações estão sujeitas à aprovação de crédito e disponibilidade do imóvel.
+        </p>
+        <p class="mt-2">
+          <i class="fas fa-chart-line mr-1"></i> <strong>OPORTUNIDADE:</strong> O valor promocional de R$ 3.900.000,00 (três milhões e novecentos mil reais) está condicionado à negociação direta com o proprietário e pode ser alterado sem aviso prévio. O valor de referência de mercado R$ 4.500.000,00 é uma estimativa baseada em imóveis similares na região.
+        </p>
+        <p class="mt-2">
+          <i class="fas fa-calendar-alt mr-1"></i> Este site foi desenvolvido para fins de apresentação comercial. Última atualização: Março de 2026.
+        </p>
+      </div>
     </footer>
   </main>
 
@@ -583,7 +647,7 @@
         return;
       }
       
-      const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos, 02 despensas) - localizado no lado mais nobre de Moema, ao lado do Parque Ibirapuera - e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI-J 22.171*%0A%0AAguardando seu retorno!`;
+      const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos, 02 despensas) - localizado no lado mais nobre de Moema, ao lado do Parque Ibirapuera - e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI: 00000 J*%0A%0AAguardando seu retorno!`;
       
       const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
       window.open(url, '_blank');
