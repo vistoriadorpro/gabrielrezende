@@ -266,21 +266,14 @@
       transform: translateY(-2px);
     }
     
-    /* Indicador de carregamento do vídeo */
-    .video-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      color: #d4af37;
-      font-size: 2rem;
-      animation: spin 1s linear infinite;
+    /* Botão WhatsApp do formulário */
+    .btn-whatsapp-form {
+      background: linear-gradient(135deg, #25d366, #128C7E);
+      transition: all 0.3s;
     }
-    
-    @keyframes spin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
+    .btn-whatsapp-form:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
     }
   </style>
 </head>
@@ -509,24 +502,43 @@
       </div>
     </section>
 
-    <!-- FORMULÁRIO DE CONTATO -->
+    <!-- FORMULÁRIO DE CONTATO - COM NOVO CAMPO "MOMENTO DE COMPRA" -->
     <section id="contato" class="py-16 border-t border-[#2a2a2a] mb-12">
       <div class="max-w-xl mx-auto">
         <div class="text-center mb-8">
-          <i class="fas fa-key gold-text text-3xl"></i>
+          <i class="fab fa-whatsapp gold-text text-4xl"></i>
           <h2 class="serif-font text-3xl md:text-4xl font-light mt-3">Fale com Rodrigo de Assis</h2>
-          <p class="text-[#b8b6ae] text-sm">Uma conversa reservada sobre este endereço exclusivo</p>
+          <p class="text-[#b8b6ae] text-sm">Preencha os dados e inicie uma conversa exclusiva no WhatsApp</p>
         </div>
         
         <div class="bg-[#0f0f0f] rounded-2xl p-8 border border-gold-text/10">
-          <form id="leadForm" class="space-y-5">
-            <div><label class="block text-gold-text text-sm mb-1">Nome completo</label><input type="text" id="nome" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]" placeholder="Como devo te chamar?"></div>
-            <div><label class="block text-gold-text text-sm mb-1">WhatsApp (com DDD)</label><input type="tel" id="whatsapp" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]" placeholder="(11) 9xxxx-xxxx"></div>
-            <div><label class="block text-gold-text text-sm mb-1">Melhor horário para contato</label><select id="horario" class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a]"><option>Manhã (9h às 12h)</option><option>Tarde (14h às 18h)</option><option>Noite (19h às 21h)</option><option>Fim de semana</option></select></div>
-            <button type="submit" class="w-full gold-bg text-[#0a0a0a] font-semibold py-3 rounded-xl transition btn-gold-glow flex items-center justify-center gap-2"><i class="fas fa-comment-dots"></i> Solicitar apresentação exclusiva</button>
+          <form id="whatsappForm" class="space-y-5">
+            <div>
+              <label class="block text-gold-text text-sm mb-1">Nome completo</label>
+              <input type="text" id="nome" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a] border-gold-text/20 focus:border-gold-text" placeholder="Como devo te chamar?">
+            </div>
+            <div>
+              <label class="block text-gold-text text-sm mb-1">WhatsApp (com DDD)</label>
+              <input type="tel" id="whatsappTel" required class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a] border-gold-text/20" placeholder="(21) 9xxxx-xxxx">
+            </div>
+            <div>
+              <label class="block text-gold-text text-sm mb-1">Qual o seu momento de compra?</label>
+              <select id="momentoCompra" class="w-full rounded-xl py-3 px-4 bg-[#1a1a1a] border-gold-text/20">
+                <option value="Pronto para compra à vista">✅ Pronto para compra à vista</option>
+                <option value="Solicitar financiamento">🏦 Solicitar financiamento</option>
+                <option value="Não vou comprar, quero apenas conhecer">🔍 Não vou comprar, quero apenas conhecer</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full btn-whatsapp-form text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+              <i class="fab fa-whatsapp text-xl"></i> Falar com Rodrigo no WhatsApp
+            </button>
           </form>
-          <div id="formFeedback" class="mt-5 text-center text-sm hidden"></div>
-          <p class="text-center text-xs text-[#6a685e] mt-6"><i class="fas fa-lock-alt mr-1"></i> Retorno em até 2h · Atendimento pessoal e sigiloso</p>
+          <p class="text-center text-xs text-[#6a685e] mt-6">
+            <i class="fas fa-lock-alt mr-1"></i> Você será redirecionado para o WhatsApp · Atendimento personalizado
+          </p>
+          <p class="text-center text-xs text-gold-text/50 mt-2">
+            CRECI: 00000 J
+          </p>
         </div>
       </div>
     </section>
@@ -549,23 +561,31 @@
       grabCursor: true,
     });
     
-    // Formulário
-    const form = document.getElementById('leadForm');
-    const feedback = document.getElementById('formFeedback');
+    // FORMULÁRIO COM REDIRECIONAMENTO DIRETO PARA WHATSAPP - COM NOVO CAMPO MOMENTO DE COMPRA
+    const form = document.getElementById('whatsappForm');
+    const numeroWhatsApp = '5521990650767';
+    
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      
       const nome = document.getElementById('nome').value.trim();
-      const whatsapp = document.getElementById('whatsapp').value.trim();
-      const horario = document.getElementById('horario').value;
-      if (!nome || !whatsapp) {
-        feedback.innerHTML = '<span class="text-amber-400 text-sm">✧ Por favor, informe nome e telefone para atendimento exclusivo.</span>';
-        feedback.classList.remove('hidden');
+      const telefone = document.getElementById('whatsappTel').value.trim();
+      const momentoCompra = document.getElementById('momentoCompra').value;
+      
+      if (!nome || !telefone) {
+        alert('✧ Por favor, informe seu nome e telefone para iniciarmos a conversa.');
         return;
       }
-      feedback.innerHTML = `<span class="text-gold-text text-sm">✓ Obrigado, ${nome}! Em breve entrarei em contato via WhatsApp (${horario}) para conversarmos sobre este andar exclusivo em Moema.</span>`;
-      feedback.classList.remove('hidden');
+      
+      // Mensagem personalizada para o WhatsApp com o momento de compra
+      const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos) e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI: 00000 J*%0A%0AAguardando seu retorno!`;
+      
+      // Redireciona para o WhatsApp
+      const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+      window.open(url, '_blank');
+      
+      // Opcional: limpar campos após envio
       form.reset();
-      setTimeout(() => feedback.classList.add('hidden'), 8000);
     });
     
     // Smooth scroll
@@ -580,9 +600,11 @@
     
     // Adicionar efeito de carregamento elegante para o vídeo
     const heroVideo = document.getElementById('heroVideo');
-    heroVideo.addEventListener('loadeddata', () => {
-      console.log('Vídeo carregado com sucesso - efeito LED ativo');
-    });
+    if (heroVideo) {
+      heroVideo.addEventListener('loadeddata', () => {
+        console.log('Vídeo carregado com sucesso - efeito LED ativo');
+      });
+    }
   </script>
 </body>
 </html>
