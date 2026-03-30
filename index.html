@@ -307,6 +307,24 @@
       transform: translateY(-3px);
       color: #d4af37 !important;
     }
+    
+    /* Ícone circular para os pilares */
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      transition: all 0.3s ease;
+    }
+    
+    .pilar-card:hover .icon-circle {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.1));
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-[#e8e6e3]">
@@ -372,23 +390,17 @@
         <!-- Lado direito: Vídeo vertical COM EFEITO LED e opacidade reduzida - VÍDEO EXEMPLO FUNCIONAL -->
         <div class="order-1 md:order-2 flex justify-center">
           <div class="hero-video-led max-w-[320px] md:max-w-[380px] mx-auto">
-            <!-- VÍDEO DE EXEMPLO - Alta qualidade, vertical, com efeito luxuoso -->
             <video autoplay muted loop playsinline id="heroVideo" poster="images/video_completo_final.mp4">
-              <!-- Vídeo vertical de exemplo - apartamento de luxo com visual contemporâneo -->
               <source src="images/video_completo_final.mp4" type="video/mp4">
-              <!-- Fallback 2 - caso o primeiro não carregue -->
               <source src="images/video_completo_final.mp4" type="video/mp4">
               Seu navegador não suporta vídeo.
             </video>
-            <!-- Overlay para efeito LED e opacidade controlada -->
             <div class="led-overlay"></div>
-            <!-- Badge de status com efeito glow -->
             <div class="absolute bottom-4 left-4 right-4 z-10">
               <div class="badge-gold rounded-full px-4 py-2 inline-block text-xs backdrop-blur-md">
                 <i class="fas fa-play-circle gold-text mr-1"></i> Apresentação Exclusiva · Tour 4K
               </div>
             </div>
-            <!-- Efeito de canto dourado -->
             <div class="absolute top-4 right-4 z-10">
               <i class="fas fa-crown gold-text text-sm opacity-70"></i>
             </div>
@@ -397,7 +409,7 @@
       </div>
     </section>
 
-    <!-- OS 3 PILARES DA EXCLUSIVIDADE -->
+    <!-- OS 3 PILARES DA EXCLUSIVIDADE - COM ÍCONES CORRIGIDOS -->
     <section class="py-20 border-t border-[#2a2a2a]">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="flex justify-center mb-4">
@@ -413,8 +425,9 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
+        <!-- Pilar 1: Privacidade de Elite -->
         <div class="pilar-card rounded-2xl p-8 text-center">
-          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+          <div class="icon-circle">
             <i class="fas fa-shield-alt text-gold-text text-3xl"></i>
           </div>
           <h3 class="text-2xl font-light mb-3 gold-text">Privacidade de Elite</h3>
@@ -423,8 +436,9 @@
           </p>
         </div>
         
+        <!-- Pilar 2: Espaço e Sofisticação - ÍCONE CORRIGIDO -->
         <div class="pilar-card rounded-2xl p-8 text-center">
-          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+          <div class="icon-circle">
             <i class="fas fa-chandelier text-gold-text text-3xl"></i>
           </div>
           <h3 class="text-2xl font-light mb-3 gold-text">Espaço e Sofisticação</h3>
@@ -433,8 +447,9 @@
           </p>
         </div>
         
+        <!-- Pilar 3: Logística Impecável -->
         <div class="pilar-card rounded-2xl p-8 text-center">
-          <div class="w-16 h-16 rounded-full gold-bg/10 flex items-center justify-center mx-auto mb-6">
+          <div class="icon-circle">
             <i class="fas fa-parking text-gold-text text-3xl"></i>
           </div>
           <h3 class="text-2xl font-light mb-3 gold-text">Logística Impecável</h3>
@@ -449,7 +464,6 @@
     <section class="py-16 border-t border-[#2a2a2a]">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <!-- Vídeo da garagem substituindo a imagem -->
           <div class="horizontal-video-frame rounded-2xl shadow-2xl">
             <video autoplay muted loop playsinline>
               <source src="images/garagem.mp4" type="video/mp4">
@@ -540,7 +554,7 @@
       </div>
     </section>
 
-    <!-- FORMULÁRIO DE CONTATO - COM NOVO CAMPO "MOMENTO DE COMPRA" -->
+    <!-- FORMULÁRIO DE CONTATO -->
     <section id="contato" class="py-16 border-t border-[#2a2a2a] mb-12">
       <div class="max-w-xl mx-auto">
         <div class="text-center mb-8">
@@ -581,7 +595,7 @@
       </div>
     </section>
 
-    <!-- FOOTER COM LINKS DO INSTAGRAM E LINKEDIN ATUALIZADOS -->
+    <!-- FOOTER COM LINKS DO INSTAGRAM E LINKEDIN -->
     <footer class="py-10 border-t border-[#2a2a2a] text-center">
       <div class="flex justify-center gap-8 mb-6">
         <a href="https://www.instagram.com/odetentor_rodrigoassis/" target="_blank" class="text-[#8a887e] hover:text-gold-text transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-2">
@@ -609,7 +623,7 @@
       grabCursor: true,
     });
     
-    // FORMULÁRIO COM REDIRECIONAMENTO DIRETO PARA WHATSAPP - COM NOVO CAMPO MOMENTO DE COMPRA
+    // FORMULÁRIO COM REDIRECIONAMENTO DIRETO PARA WHATSAPP
     const form = document.getElementById('whatsappForm');
     const numeroWhatsApp = '5521990650767';
     
@@ -625,14 +639,10 @@
         return;
       }
       
-      // Mensagem personalizada para o WhatsApp com o momento de compra
       const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos) e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI: 00000 J*%0A%0AAguardando seu retorno!`;
       
-      // Redireciona para o WhatsApp
       const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
       window.open(url, '_blank');
-      
-      // Opcional: limpar campos após envio
       form.reset();
     });
     
@@ -646,7 +656,6 @@
       });
     });
     
-    // Adicionar efeito de carregamento elegante para o vídeo
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
       heroVideo.addEventListener('loadeddata', () => {
