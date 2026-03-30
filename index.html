@@ -399,7 +399,7 @@
       </div>
     </section>
 
-    <!-- COMODIDADES COMPLETAS - SEM ADEGA, COM "02 DESPENSAS" -->
+    <!-- COMODIDADES COMPLETAS - COM NOVA INFORMAÇÃO DE LOCALIZAÇÃO -->
     <section class="py-16 border-t border-[#2a2a2a]">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -419,7 +419,12 @@
             </h2>
           </div>
           <div class="space-y-3">
+            <!-- 4 vagas de garagem cobertas como primeiro item -->
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-car text-gold-text text-lg w-6"></i><span>4 vagas de garagem cobertas</span></div>
+            
+            <!-- NOVO ITEM: Localização no lado mais nobre de Moema -->
+            <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-map-marker-alt text-gold-text text-lg w-6"></i><span>Localização no lado mais nobre de Moema: ao lado do Pq. Ibirapuera</span></div>
+            
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-couch text-gold-text text-lg w-6"></i><span>Living amplo com vista panorâmica e Bar integrado</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-book text-gold-text text-lg w-6"></i><span>Biblioteca/Escritório (ideal para Home Office de alto padrão)</span></div>
             <div class="comodidade-item flex items-center gap-3 py-2"><i class="fas fa-bed text-gold-text text-lg w-6"></i><span>Suítes amplas e Lavabo social</span></div>
@@ -578,7 +583,7 @@
         return;
       }
       
-      const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos, 02 despensas) e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI: 00000 J*%0A%0AAguardando seu retorno!`;
+      const mensagem = `Olá Rodrigo! Me chamo ${nome}.%0A%0A📍 Vi sua apresentação do Andar Exclusivo em Moema Pássaros (240m², 4 vagas, elevadores privativos, 02 despensas) - localizado no lado mais nobre de Moema, ao lado do Parque Ibirapuera - e tenho interesse na oportunidade de R$ 3,9M.%0A%0A📞 Meu WhatsApp para contato: ${telefone}%0A🎯 Meu momento de compra: ${momentoCompra}%0A%0A*CRECI: 00000 J*%0A%0AAguardando seu retorno!`;
       
       const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
       window.open(url, '_blank');
