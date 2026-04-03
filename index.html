@@ -195,6 +195,45 @@
             opacity: 0;
             visibility: hidden;
         }
+        /* Thumbnail overlay para o vídeo */
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+        }
+        .video-thumbnail img {
+            width: 100%;
+            border-radius: 1rem;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+        }
+        .play-overlay:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        .play-overlay .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(234, 88, 12, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .play-overlay:hover .play-icon {
+            transform: scale(1.1);
+            background: rgba(234, 88, 12, 1);
+        }
     </style>
 </head>
 <body class="bg-white text-carvao font-sans antialiased">
@@ -329,10 +368,34 @@
                 </div>
 
                 <div class="relative reveal" style="transition-delay: 100ms;">
-                    <!-- Thumbnail do Vídeo com iframe -->
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
-                        <div class="video-container">
-                            <iframe id="explicativeVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- Vídeo do YouTube com thumbnail personalizada -->
+                    <div id="videoContainer" class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
+                        <!-- Thumbnail do Vídeo (imagem de capa) -->
+                        <div id="videoThumbnail" class="video-thumbnail relative cursor-pointer" onclick="playVideo()">
+                            <img src="images/foto.png" alt="Vídeo explicativo do método 360º" class="w-full h-auto object-cover">
+                            <div class="play-overlay">
+                                <div class="play-icon">
+                                    <i data-lucide="play" class="w-10 h-10 text-white ml-1"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-6 right-6 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                2:14
+                            </div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <p class="text-sm font-medium opacity-90 mb-1">Assista antes de preencher o formulário</p>
+                                <h3 class="text-xl font-bold">Entenda como funciona</h3>
+                            </div>
+                        </div>
+                        <!-- Player do YouTube (inicialmente escondido) -->
+                        <div id="youtubePlayer" class="video-container hidden">
+                            <iframe id="explicativeVideo" 
+                                    src="https://www.youtube.com/embed/QBGO_Q5MIgE?enablejsapi=1&rel=0" 
+                                    title="Método 360º - Venda seu imóvel em 45 dias"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
 
@@ -515,7 +578,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal" style="transition-delay: 100ms;">
-                <!-- Cases mantidos igual ao original -->
+                <!-- Case 1 - Cobertura Duplex Faria Lima -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel1.png" alt="Cobertura Duplex Faria Lima" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -528,6 +591,7 @@
                     </div>
                 </div>
 
+                <!-- Case 2 - Mansão Morumbi -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel2.png" alt="Mansão Moderna Morumbi" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -540,6 +604,7 @@
                     </div>
                 </div>
 
+                <!-- Case 3 - Loft Design Jardins -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel3.png" alt="Loft Design Jardins" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -552,6 +617,7 @@
                     </div>
                 </div>
 
+                <!-- Case 4 - Apartamento Panorâmico Itaim -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel4.png" alt="Apartamento Panorâmico Itaim" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -564,6 +630,7 @@
                     </div>
                 </div>
 
+                <!-- Case 5 - Casa Granja Viana -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel5.png" alt="Casa Granja Viana" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -576,6 +643,7 @@
                     </div>
                 </div>
 
+                <!-- Case 6 - Penthouse Brooklin -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel6.png" alt="Penthouse Brooklin" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -588,6 +656,7 @@
                     </div>
                 </div>
 
+                <!-- Case 7 - Apartamento Higienópolis -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel7.png" alt="Apartamento Higienópolis" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -600,6 +669,7 @@
                     </div>
                 </div>
 
+                <!-- Case 8 - Casa Alto da Lapa -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover-lift cursor-pointer">
                     <div class="aspect-[4/5] relative overflow-hidden">
                         <img src="images/imovel8.png" alt="Casa Alto da Lapa" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
@@ -612,6 +682,7 @@
                     </div>
                 </div>
 
+                <!-- Card "Seu Imóvel Aqui" -->
                 <div onclick="scrollToOferta()" class="bg-gradient-to-br from-primary/10 via-white to-accent/10 rounded-2xl shadow-xl border-2 border-dashed border-primary/30 p-8 flex flex-col items-center justify-center text-center hover-lift cursor-pointer group hover:border-primary transition-colors">
                     <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                         <i data-lucide="camera" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
@@ -627,7 +698,7 @@
         <div class="section-divider mt-20"></div>
     </section>
 
-    <!-- Seção de solução (mantida) -->
+    <!-- Seção de solução -->
     <section id="solucao" class="py-20 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
@@ -689,7 +760,7 @@
         <div class="section-divider mt-20"></div>
     </section>
 
-    <!-- Seção Diferencial (mantida) -->
+    <!-- Seção Diferencial -->
     <section id="diferencial" class="py-20 bg-cinza-claro">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto">
@@ -763,7 +834,7 @@
         <div class="section-divider mt-20"></div>
     </section>
 
-    <!-- Offer Section (mantida) -->
+    <!-- Offer Section -->
     <section id="oferta" class="py-20 bg-white relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-beige/30 to-transparent pointer-events-none"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1014,7 +1085,6 @@
                     </div>
                 </div>
                 
-                <!-- Links para Política de Privacidade e Termos (modais) -->
                 <div class="flex flex-wrap justify-center gap-6 mt-6 pt-4 border-t border-gray-800/50">
                     <button onclick="openPrivacyModal()" class="text-gray-500 hover:text-accent text-xs transition-colors flex items-center gap-1">
                         <i data-lucide="lock" class="w-3 h-3"></i>
@@ -1163,8 +1233,8 @@
     <script>
         // Variáveis para controle do vídeo
         let videoWatched = false;
-        let videoElement = null;
-        let checkInterval = null;
+        let videoIframe = null;
+        let playerReady = false;
 
         // Função para rolar até a seção de oferta
         function scrollToOferta() {
@@ -1178,6 +1248,36 @@
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+            }
+        }
+
+        // Função para mostrar CTA pós-vídeo
+        function showPostVideoCta() {
+            const ctaElement = document.getElementById('postVideoCta');
+            if (ctaElement && !ctaElement.classList.contains('show')) {
+                ctaElement.classList.add('show');
+                localStorage.setItem('videoWatched', 'true');
+                videoWatched = true;
+            }
+        }
+
+        // Função para reproduzir o vídeo (substitui a thumbnail)
+        function playVideo() {
+            const thumbnail = document.getElementById('videoThumbnail');
+            const player = document.getElementById('youtubePlayer');
+            
+            if (thumbnail && player) {
+                thumbnail.classList.add('hidden');
+                player.classList.remove('hidden');
+                
+                // Carregar o iframe com autoplay
+                const iframe = document.getElementById('explicativeVideo');
+                if (iframe && !iframe.src.includes('autoplay=1')) {
+                    iframe.src += '&autoplay=1';
+                }
+                
+                // Iniciar tracking do vídeo
+                setupVideoTracking();
             }
         }
 
@@ -1231,79 +1331,34 @@
             window.requestAnimationFrame(step);
         }
 
-        // Detectar quando o vídeo foi assistido (pelo menos 80% ou até o final)
+        // Detectar quando o vídeo foi assistido (usando API do YouTube)
         function setupVideoTracking() {
-            videoElement = document.getElementById('explicativeVideo');
-            if (!videoElement) return;
+            videoIframe = document.getElementById('explicativeVideo');
+            if (!videoIframe) return;
             
-            // Tentar acessar a API do YouTube
-            // Como o iframe pode carregar de forma assíncrona, usamos um listener
-            const checkVideoReady = setInterval(() => {
-                try {
-                    // Tenta acessar o contentWindow do iframe (pode não funcionar devido a CORS)
-                    // Alternativa: monitorar eventos de mensagem do YouTube
-                    console.log("Verificando vídeo...");
-                } catch(e) {
-                    console.log("Aguardando vídeo...");
+            // Adicionar listener para mensagens do YouTube
+            window.addEventListener('message', function(event) {
+                if (event.origin === 'https://www.youtube.com') {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.event === 'onStateChange') {
+                            // 0 = ended (vídeo terminou)
+                            if (data.info === 0 && !videoWatched) {
+                                videoWatched = true;
+                                showPostVideoCta();
+                            }
+                        }
+                    } catch(e) {}
                 }
-            }, 2000);
+            });
             
-            // Usar Intersection Observer para detectar quando o vídeo fica visível e tentar trackear
-            // Como fallback, vamos usar um temporizador simulando que o usuário assistiu
-            // Na prática real, o YouTube envia eventos via postMessage
-            
-            // Para demonstração: simular que o vídeo foi assistido após 90 segundos (tempo do vídeo)
-            // Ou quando o usuário rolar a página significativamente
-            let watchTimer = setTimeout(() => {
+            // Fallback: verificar após 130 segundos (2:10) se o vídeo foi visto
+            setTimeout(() => {
                 if (!videoWatched) {
                     videoWatched = true;
                     showPostVideoCta();
                 }
-            }, 90000); // 90 segundos simulando o vídeo de 2:14
-            
-            // Também podemos detectar quando o usuário sai da seção de vídeo
-            const videoSection = document.getElementById('video-explicativo');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting && !videoWatched) {
-                        // Usuário saiu da seção de vídeo, considerar como assistido
-                        videoWatched = true;
-                        showPostVideoCta();
-                        clearTimeout(watchTimer);
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            if (videoSection) observer.observe(videoSection);
-            
-            // Limpar timer se já mostrou
-            function showPostVideoCta() {
-                if (videoWatched) {
-                    const ctaElement = document.getElementById('postVideoCta');
-                    if (ctaElement) {
-                        ctaElement.classList.add('show');
-                        // Registrar no localStorage que o CTA já foi exibido
-                        localStorage.setItem('videoWatched', 'true');
-                    }
-                }
-            }
-            
-            // Verificar localStorage se já assistiu antes
-            if (localStorage.getItem('videoWatched') === 'true') {
-                videoWatched = true;
-                showPostVideoCta();
-                clearTimeout(watchTimer);
-            }
-        }
-
-        // Função para mostrar CTA pós-vídeo (chamada também pelo botão manual se necessário)
-        function showPostVideoCta() {
-            const ctaElement = document.getElementById('postVideoCta');
-            if (ctaElement && !ctaElement.classList.contains('show')) {
-                ctaElement.classList.add('show');
-                localStorage.setItem('videoWatched', 'true');
-                videoWatched = true;
-            }
+            }, 130000);
         }
 
         // Inicializar ícones do Lucide
@@ -1390,8 +1445,11 @@
         
         window.dispatchEvent(new Event('scroll'));
         
-        // Inicializar tracking de vídeo
-        setupVideoTracking();
+        // Verificar localStorage se já assistiu antes
+        if (localStorage.getItem('videoWatched') === 'true') {
+            videoWatched = true;
+            showPostVideoCta();
+        }
         
         // Fechar modais com ESC
         document.addEventListener('keydown', function(e) {
